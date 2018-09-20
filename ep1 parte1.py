@@ -4,6 +4,7 @@ Created on Tue Sep 11 22:37:53 2018
 
 @author: andre
 """
+lista_vazia= {}
 
 cardapio ={}
 
