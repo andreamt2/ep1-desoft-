@@ -1,0 +1,80 @@
+util = []
+client = {
+    "Items":[]
+}
+menu = {
+    "jujuba" : 10,
+    "pipoca gourmet" : 60,
+    "suco de tomate" : 15,
+    "agua" : 2.50
+}
+def Zero():
+    print("\n Ate mais! Tchau Tchau perna de Pau")
+util.append(Zero)
+def Um():
+    print("\n O cardápio possui os seguintes itens:\n")
+    for prod,price in menu.items():
+        print(prod)
+        print("R$:" + str(price) +"\n")
+util.append(Um)    
+def Dois():
+    product_name = input("Qual produto vc que adcionar?")   
+    if(check_if_exists_into_dictionary(product_name, menu)):
+        product_ammount = input("Quantas unidades deseja comprar?") 
+        new_item = {
+            "name": product_name,
+            "quantity": product_ammount
+        }
+        if(check_if_exists(client, new_item["name"], new_item["quantity"])):
+            print("\n Updated")
+        else:
+            client["Items"].append(new_item)
+    else:
+        print("Produto nao esta no cardapio")        
+util.append(Dois)  
+def Tres():
+    aux = 0
+    product_name = input("Qual produto deseja deletar?")
+    for prod in client["Items"]:
+        if(prod["name"] == product_name):
+            client["Items"].pop(aux)
+            aux = aux + 1
+            print(" \n Deletado")
+            return 0
+    print("Produto nao esta no estoque")        
+util.append(Tres)
+def Quatro():
+    p = 0
+    for Item in client["Items"]:
+        print("Produto :" + Item["name"] + ":")
+        print("Quantidade :" + Item["quantity"])
+        p = p + (float(Item["quantity"]) * float(menu[Item["name"]]) )
+        print("Preco unitario : " + "R$ :" + str(menu[Item["name"]]))
+        price_unity = float(Item["quantity"]) * float(menu[Item["name"]])
+        print("Preco total do produto : " + str(price_unity) )
+    print("Preco total da comanda:" + "R$ :" + str(p))    
+util.append(Quatro)
+def Cinco():
+    control = input("Deseja deletar alum item (s/n) :")
+    if(control == "n"):
+        prod = input("Qual produto deseja adcionar ou editar: \n")
+        new_price = input("Qual o novo valor")
+        new_price = float(new_price)
+        menu[prod] = new_price  
+    else:
+        prod_to_delete = input("Qual produto deseja deletar: \n")
+        del menu[prod_to_delete]
+        print("Deletado")
+util.append(Cinco)             
+def check_if_exists(client, name, quantity):
+    for prod in client["Items"]:
+        if(prod["name"] == name ):
+            prod["quantity"] = float(prod["quantity"]) + float(quantity)
+            return True
+    return False    
+        
+def check_if_exists_into_dictionary(name, dictionary):
+    for prod in dictionary:
+        if(prod == name):
+            return True
+    return False    
