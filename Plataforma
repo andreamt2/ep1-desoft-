@@ -1,0 +1,8 @@
+from Ep import util
+var_control = "somethingdifferentthanzero"
+  
+while (var_control != 0):
+    print("Comanda eletrônica \n 0 – sair \n 1 – imprimir cardápio \n 2 - adicionar item \n 3 - remover item \n 4 - imprimir comanda \n 5 - alterar cardapio")
+    var_control = input("O que deseja fazer?")
+    var_control = int(var_control)
+    util[var_control]()
